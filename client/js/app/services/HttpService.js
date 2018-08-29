@@ -12,8 +12,7 @@ class HttpService{
 				if(xhr.readyState == 4){
 
 					if(xhr.status == 200){
-						resolve(JSON.parse(xhr.responseText)
-						)
+						resolve(JSON.parse(xhr.responseText))
 					} else {
 						console.log(xhr.responseText)
 						reject(xhr.responseText)
@@ -23,5 +22,25 @@ class HttpService{
 
 			xhr.send()
 		})
+	}
+
+	post(url, dado){
+
+		return xhr = new Promise((resolve, reject) => {
+
+			let xhr = new XMLHttpRequest()
+			xhr.open('POST', url, true)
+			xhr.setRequestHeader('Content-type', 'application/json')
+			xhr.onreadystatechange = () => {
+				if(xhr.status == 200){
+					resolve(JSON.parse(xhr.responseText))
+				}else{
+					console.log(xhr.responseText)
+					reject(xhr.responseText)
+				}
+			}
+		})
+
+		xhr.send(JSON.stringify(dado)) //usando JSON.stringify para converter objeto em uma string no formato JSON.
 	}
 }
