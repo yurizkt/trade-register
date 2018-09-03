@@ -65,12 +65,12 @@ class NegociacaoDao{
 				.objectStore(this._store)
 				.clear()
 
-				request.onsuccess(e => resolve('Negociações apagadas com sucesso'))
+			request.onsuccess = e => resolve('Negociações apagadas com sucesso')
 
-				request.onerror(e => {
-					console.log(e.target.error)
-					reject('Não foi possível apagar as negociações')
-				})
+			request.onerror = e => {
+				console.log(e.target.error)
+				reject('Não foi possível apagar as negociações')
+			}
 		})
 	}
 }
